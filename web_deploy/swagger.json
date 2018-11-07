@@ -1,0 +1,153 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "EZ Live Radio",
+    "description": "Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.",
+    "version": "1.0.0",
+    "x-logo": {
+      "url": "https://api.epinasmarket.net/assets/images/logo.png"
+    }
+  },
+  "host": "<ducatus-domain>",
+  "basePath": "/v2",
+  "securityDefinitions": {
+    "Authentication": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "/session",
+      "tokenUrl": "/session",
+      "scopes": {
+        "role": "Grants access to specific modules depending on the granted role"
+      }
+    }
+  },
+  "paths": {
+    "/dashboard": {
+      "get": {
+        "summary": "Dashboard - complete site property value for logged in or guest user",
+        "description": "Returns a complete list of property value for the site's dashboard",
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "security": [
+          {
+            "Authentication": [
+              "role"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "liveStreamURI": {
+                  "type": "string",
+                  "description": "The stream URI"
+                },
+                "dj": {
+                  "description": "Current DJ data and infos",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "The display name of the current DJ",
+                      "type": "string"
+                    },
+                    "announcements": {
+                      "type": "string",
+                      "description": "Current DJs announcements or status"
+                    }
+                  }
+                },
+                "user": {
+                  "description": "The current user logged in. blank if not logged in",
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    },
+                    "fullname": {
+                      "type": "string"
+                    },
+                    "dp": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "whosPlaying": {
+                  "description": "Current player data and infos",
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the Band or artist playing"
+                    },
+                    "artistDP": {
+                      "type": "string",
+                      "description": "The current artist or band display picture"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "Artist",
+                        "Band"
+                      ],
+                      "description": "The type of artist playing if solo or band"
+                    },
+                    "lineup": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "album": {
+                            "type": "string",
+                            "description": "Album name"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Song title"
+                          },
+                          "dateReleased": {
+                            "type": "string",
+                            "description": "Song release date"
+                          },
+                          "albumDP": {
+                            "type": "string",
+                            "description": "Album display picture"
+                          }
+                        }
+                      }
+                    },
+                    "nowPlaying": {
+                      "type": "string",
+                      "description": "The current song playing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}

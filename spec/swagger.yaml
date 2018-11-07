@@ -1,0 +1,19 @@
+swagger: '2.0'
+info:
+  title: EZ Live Radio
+  description: >-
+    Optional multiline or single-line description in
+    [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 1.0.0
+  x-logo:
+    url: 'https://api.epinasmarket.net/assets/images/logo.png'
+host: <ducatus-domain>
+basePath: /v2
+securityDefinitions:
+  Authentication:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: /session
+    tokenUrl: /session
+    scopes:
+      role: Grants access to specific modules depending on the granted role
