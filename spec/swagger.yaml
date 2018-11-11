@@ -17,3 +17,34 @@ securityDefinitions:
     tokenUrl: /session
     scopes:
       role: Grants access to specific modules depending on the granted role
+tags:
+  - name: User
+    description: The platform users
+  - name: Role
+    description: The advanced role of a user
+  - name: Access
+    description: The access permission of a role
+  - name: Artist
+    description: A user's artist profile
+  - name: Band
+    description: A group of artists
+  - name: Album
+    description: A set of artis's / Band's records
+  - name: Song
+    description: A record of an album
+  - name: Event
+    description: Scheduled live stram event or a live gig
+  - name: Lineups
+    description: The queueing of artist / band in an event
+  - name: Promotion
+    description: Ads / Event marketing
+  - name: Dashboard
+    description: The home page
+  - name: Comment
+    description: 'Comment for (Band, Artist, Status, Comment, DJ, Event, Promotion)'
+  - name: Vote
+    description: 'Vote for (Band, Artist, Status, Comment, DJ, Event, Promotion)'
+  - name: Reputation
+    description: >-
+      Average grade value of upvote / downvote (Band, Artist, Status, Comment,
+      DJ, Event, Promotion)
